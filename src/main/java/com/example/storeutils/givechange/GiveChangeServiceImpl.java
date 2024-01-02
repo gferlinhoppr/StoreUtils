@@ -1,33 +1,20 @@
-package com.example.givechange.exercice;
+package com.example.storeutils.givechange;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-@SpringBootApplication
-public class GiveChange {
+@Service
+public class GiveChangeServiceImpl implements IGiveChangeService {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        while(true) {
-        System.out.println("Entrer le prix total: ");
-        Double value1 = scanner.nextDouble();
-            System.out.println("Entrer le montant donné par le client: ");
-          Double value2 = scanner.nextDouble();
-
-            // Peut servir plus tard
-//            System.out.println("Entrer les valeurs de monnaies manquantes dans la caisse: ");
-//            Double value3 = scanner.nextString();
-
-          System.out.println(processValue(value2 - value1));
-
-        }
+    public String getChange(GiveChangeDto giveChangeDto) {
+        return processValue(giveChangeDto.getGiven() - giveChangeDto.getDue());
     }
 
-    static String processValue(Double value) {
-        // Note: Quand j'utilisais un double j'avais une boucle infinie sur le while
-        // alors que mon nombre vaut 0, j'ai donc fait les calculs en int, à refacto plus tard
+    String processValue(Double value) {
+
         Double newValue = (value*100);
 
         int valueInCent = newValue.intValue();

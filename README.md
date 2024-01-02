@@ -1,21 +1,15 @@
-# Programme de calcul de monnaie
+# Programme de caisse enregistreuse
 
-## Présentation simple du programme
+## Présentation
 
-Le programme a pour but d'indiquer à l'utilisateur comment rendre la monnaie à un client.
+Le programme simule le comportement d'une caisse enregistreuse.
+le programme expose des api, avec comme fonctionnalités:
+- Le calcul d'un rendu de monnaie
+- La gestion de tickets de caisse
 
-Pour cela:
+## Rendu de monnaie
 
-- Un prompt affiche "Entrer le prix total: "
-- L'utilisateur peut ensuite indiquer un nombre représentant le prix total à payer (séparé par une ',' pour les décimales)
-- un prompt affiche ensuite "Entrer le montant donné par le client: "
-- L'utilisateur peut alors indiquer combien le client a donné (séparé par une ',' pour les décimales)
-- Le résultat s'affiche ensuite sous forme de chaîne de caractères (voir ci dessous)
-- On revient ensuite à l'étape 1 du programme
-
-## Détails du fonctionnement du programme.
-
-On considère qu'on dispose toujours de chaque valeur de monnaie 
+On considère qu'on dispose toujours de chaque valeur de monnaie
 (plus tard on pourra implémenter le fait qu'il manque telle ou telle valeur de monnaie).
 
 On prend les valeurs monétaires en € entre 50€ et 1 cent, pas de valeur au dessus.
@@ -36,6 +30,12 @@ Je dois lui rendre 130 - 128,59 = 1,41
 
 Le message doit préciser qu'on lui rend 1 pièce de 1€, 2 pièces de 20 centimes d'euros, 1 pièce de 1 centimes d'€
 
-## Autres détails
 
-Pas de consignes concernant la gestion des erreurs et autres cas limites mais ce serait préférable d'en avoir ;)
+## Ticket de caisse
+
+On permet la création, suppression et modification d'un ticket de caisse.
+Sur un ticket on trouve une liste de produits avec la quantité associée ainsi que le prix par article et le prix total.
+
+Il est aussi possible d'ajouter, supprimer, modifier un produit.
+Un produit est représenté par un nom et un prix.
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="init-schema" author="Guillaume Ferlin">
+        <sql>
+            create table product (
+            id bigint not null primary key,
+            name varchar(255) not null,
+            price number not null
+            );
+
+            create table receipt (
+            id bigint not null primary key,
+            edition_date timestamp not null,
+            total_price number not null
+            );
+
+            create table receipt_products (
+            id bigint,
+            id_receipt bigint ,
+            id_product bigint,
+            quantity integer,
+            price number not null
+            );
+
+            create sequence product_sequence as bigint start with 1;
+            create sequence receipt_sequence as bigint start with 1;
+            create sequence receipt_product_sequence as bigint start with 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="init-data" author="Guillaume Ferlin">
+        <sql>
+            insert into product (id, name, price) values ((NEXT VALUE FOR product_sequence), 'produit A', 3.9);
+            insert into product (id, name, price) values ((NEXT VALUE FOR product_sequence), 'produit B', 4.55);
+
+            insert into receipt(id, edition_date, total_price) values ((NEXT VALUE FOR receipt_sequence), now(), 16.25);
+            insert into receipt(id, edition_date, total_price) values ((NEXT VALUE FOR receipt_sequence), now(), 3.9);
+
+            insert into receipt_products(id, id_receipt, id_product, quantity, price) values ((NEXT VALUE FOR receipt_product_sequence), 1, 1, 3, 11.7);
+            insert into receipt_products(id, id_receipt, id_product, quantity, price) values ((NEXT VALUE FOR receipt_product_sequence), 1, 2, 1, 4.55);
+            insert into receipt_products(id, id_receipt, id_product, quantity, price) values ((NEXT VALUE FOR receipt_product_sequence), 2, 1, 1, 3.9);
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
